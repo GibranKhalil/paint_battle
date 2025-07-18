@@ -12,11 +12,8 @@ export default class ObserverModel {
     }
 
     notifyObservers(eventType, data = {}) {
-        if (this.destroyed) return;
-
         const eventData = {
             timestamp: Date.now(),
-            entityId: this.id,
             ...data
         };
 

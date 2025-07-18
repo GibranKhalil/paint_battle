@@ -1,4 +1,5 @@
 import COMPONENTS_ID from "../../constants/componentsId.constant.js";
+import CursorController from "../../controllers/Cursor.controller.js";
 import ButtonFactory from "../ui/button.js";
 import BaseScreen from "./Base.screen.js";
 
@@ -12,6 +13,8 @@ export default class MainMenuScreen extends BaseScreen {
             ButtonFactory.createMainMenuButton(324, 319, 140, 100, 'credits'),
             ButtonFactory.createMainMenuButton(472, 319, 140, 100, 'config')
         ]
+
+        this.cursor = new CursorController(Screen.getMode().width / 2, Screen.getMode().height / 2)
     }
 
     render() {
@@ -22,5 +25,7 @@ export default class MainMenuScreen extends BaseScreen {
                 .render(
                     button.getComponent(COMPONENTS_ID.TransformUI)
                 ))
+        this.cursor.render();
+        this.cursor.update();
     }
 }
