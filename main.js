@@ -1,7 +1,10 @@
-const font = new Font("./src/assets/fonts/NormalFont.ttf");
+import MainMenuScreen from "./src/views/screens/MainMenu.screen.js";
 
-os.setInterval(() => { // Basically creates an infinite loop, similar to while true(you can use it too).
-    Screen.clear(); // Clear screen for the next frame.
-    font.print(0, 0, "Hello   World!"); // x, y, text
-    Screen.flip(); // Updates the screen.
-}, 0)
+Screen.setFrameCounter(true);
+Screen.setVSync(false);
+
+const mainMenuScreen = new MainMenuScreen();
+
+Screen.display(() => {
+    mainMenuScreen.render();
+});
