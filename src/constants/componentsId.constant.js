@@ -1,6 +1,5 @@
 const COMPONENTS_ID = {
     TransformModel: 'transformModel',
-    TransformUI: 'transformUI',
     MovementModel: 'movementModel',
     ObserverModel: 'observerModel',
     RendererUI: 'rendererUI',

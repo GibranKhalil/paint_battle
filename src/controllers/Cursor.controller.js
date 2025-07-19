@@ -5,8 +5,8 @@ import CursorComponent from "../views/components/Cursor.component.js";
 import BaseController from "./Base.controller.js";
 
 export default class CursorController extends BaseController {
-    constructor(initialX = 0, initialY = 0, speed = 3, observers) {
-        const model = new CursorModel({ x: initialX, y: initialY }, { speed });
+    constructor(initialX = 0, initialY = 0, speed = 3, positions, observers) {
+        const model = new CursorModel({ x: initialX, y: initialY }, { speed }, positions);
         const view = new CursorComponent(initialX, initialY);
 
         super(model, view)
@@ -21,10 +21,10 @@ export default class CursorController extends BaseController {
         if (!this.view.onEntityEvent) {
             this.view.onEntityEvent = (eventType, data) => {
                 if (eventType === EVENTS.POSITION_CHANGED) {
-                    const transformUI = this.view.getComponent(COMPONENTS_ID.TransformModel);
-                    if (transformUI) {
-                        transformUI.x = data.x;
-                        transformUI.y = data.y;
+                    const transform = this.view.getComponent(COMPONENTS_ID.TransformModel);
+                    if (transform) {
+                        transform.x = data.x;
+                        transform.y = data.y;
                     }
                 }
             };
@@ -42,9 +42,7 @@ export default class CursorController extends BaseController {
             viewTransform.x = modelTransform.x;
             viewTransform.y = modelTransform.y;
         }
-    }
 
-    render() {
         this.view.render();
     }
 

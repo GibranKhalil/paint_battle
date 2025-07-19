@@ -14,7 +14,14 @@ export default class MainMenuScreen extends BaseScreen {
             ButtonFactory.createMainMenuButton(472, 319, 140, 100, 'config')
         ]
 
-        this.cursor = new CursorController(Screen.getMode().width / 2, Screen.getMode().height / 2)
+        this.cursor = new CursorController(142, 395, 3,
+            [
+                { x: 142, y: 395 },
+                { x: 290, y: 395 },
+                { x: 438, y: 395 },
+                { x: 586, y: 395 }
+            ]
+        )
     }
 
     render() {
@@ -23,9 +30,8 @@ export default class MainMenuScreen extends BaseScreen {
             .forEach((button) => button
                 .getComponent(COMPONENTS_ID.RendererUI)
                 .render(
-                    button.getComponent(COMPONENTS_ID.TransformUI)
+                    button.getComponent(COMPONENTS_ID.TransformModel)
                 ))
-        this.cursor.render();
         this.cursor.update();
     }
 }
