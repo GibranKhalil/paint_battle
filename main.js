@@ -1,10 +1,10 @@
-import MainMenuScreen from "./src/views/screens/MainMenu.screen.js";
+import PlayerSelectScreen from "./src/views/screens/PlayerSelect.screen.js";
 
 Screen.setFrameCounter(true);
 Screen.setVSync(false);
 
-const mainMenuScreen = new MainMenuScreen();
+const playerSelectScreen = new PlayerSelectScreen();
 
 Screen.display(() => {
-    mainMenuScreen.render();
+    playerSelectScreen.render();
 });

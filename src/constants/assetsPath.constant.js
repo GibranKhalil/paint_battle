@@ -1,6 +1,7 @@
 const ASSETS_PATH = {
     Image: './src/assets/images',
     Sounds: './src/assets/sounds',
+    Characters: './src/assets/images/characters',
     Fonts: './src/assets/fonts',
     Components: './src/assets/images/components',
     Backgrounds: './src/assets/images/backgrounds',
