@@ -3,4 +3,9 @@ export default class BaseController {
         this.model = model;
         this.view = view;
     }
+
+
+    onEntityEvent(eventType, data) {
+        throw new Error("onEntityEvent deve ser criado na subclasse")
+    }
 }

@@ -27,12 +27,14 @@ export default class MainMenuScreen extends BaseScreen {
 
     render() {
         this.renderBackground();
+
         this.buttons
-            .forEach((button) => button
+            .forEach(({ view }) => view
                 .getComponent(COMPONENTS_ID.Renderer)
                 .render(
-                    button.getComponent(COMPONENTS_ID.Transform)
+                    view.getComponent(COMPONENTS_ID.Transform)
                 ))
+
         this.cursor.update();
     }
 }

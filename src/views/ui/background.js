@@ -2,7 +2,7 @@ import COMPONENTS_ID from "../../constants/componentsId.constant.js";
 import AnimatorComponent from "../components/Animator.component.js";
 import RendererUIComponent from "../components/Renderer.component.js";
 import TransformComponent from "../components/Transform.component.js";
-import BaseUIComponent from "../entities/Base.entity.js";
+import BaseUIComponent from "../Base.view.js";
 
 export default class BackgroundFactory {
 

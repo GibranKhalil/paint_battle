@@ -40,8 +40,4 @@ export default class BaseUIComponent {
         this.active = false;
     }
 
-    onEntityEvent(eventType, data) {
-        throw new Error("É preciso implementar esse método na subclasse")
-    }
-
 }
