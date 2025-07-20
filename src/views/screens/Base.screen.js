@@ -32,7 +32,7 @@ export default class BaseScreen {
     renderBackground() {
         this.background.getComponent(COMPONENTS_ID.Animator)
             .parallaxToDown(
-                this.background.getComponent(COMPONENTS_ID.RendererUI).sprite,
+                this.background.getComponent(COMPONENTS_ID.Renderer).sprite,
                 this.parallaxState
             );
     }

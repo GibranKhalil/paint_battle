@@ -39,4 +39,9 @@ export default class BaseUIComponent {
         this.isDestroyed = true;
         this.active = false;
     }
+
+    onEntityEvent(eventType, data) {
+        throw new Error("É preciso implementar esse método na subclasse")
+    }
+
 }

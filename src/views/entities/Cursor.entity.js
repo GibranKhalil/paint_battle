@@ -1,9 +1,9 @@
 import ASSETS_PATH from "../../constants/assetsPath.constant.js";
 import COMPONENTS_ID from "../../constants/componentsId.constant.js";
 import EVENTS from "../../constants/event.constant.js";
-import TransformModel from "../../models/Transform.model.js";
-import BaseUIComponent from "./Base.component.js";
-import RendererUIComponent from "./ui/Renderer.component.js";
+import RendererUIComponent from "../components/Renderer.component.js";
+import TransformComponent from "../components/Transform.component.js";
+import BaseUIComponent from "./Base.entity.js";
 
 export default class CursorComponent extends BaseUIComponent {
     constructor(x, y) {
@@ -12,20 +12,20 @@ export default class CursorComponent extends BaseUIComponent {
     }
 
     _setupComponents(x, y, sprite) {
-        this.addComponent(COMPONENTS_ID.TransformModel, new TransformModel(x, y))
-            .addComponent(COMPONENTS_ID.RendererUI, new RendererUIComponent(sprite))
+        this.addComponent(COMPONENTS_ID.Transform, new TransformComponent(x, y))
+            .addComponent(COMPONENTS_ID.Renderer, new RendererUIComponent(sprite))
     }
 
     render() {
-        this.getComponent(COMPONENTS_ID.RendererUI)
+        this.getComponent(COMPONENTS_ID.Renderer)
             .render(
-                this.getComponent(COMPONENTS_ID.TransformModel)
+                this.getComponent(COMPONENTS_ID.Transform)
             )
     }
 
     onEntityEvent(eventType, data) {
         if (eventType === EVENTS.POSITION_CHANGED) {
-            const transform = this.getComponent(COMPONENTS_ID.TransformModel);
+            const transform = this.getComponent(COMPONENTS_ID.Transform);
             if (transform) {
                 transform.x = data.x;
                 transform.y = data.y;

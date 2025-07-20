@@ -1,6 +1,6 @@
 import COMPONENTS_ID from "../constants/componentsId.constant.js";
 import CursorModel from "../models/Cursor.model.js";
-import CursorComponent from "../views/components/Cursor.component.js";
+import CursorComponent from "../views/entities/Cursor.entity.js";
 import BaseController from "./Base.controller.js";
 
 export default class CursorController extends BaseController {
@@ -28,8 +28,8 @@ export default class CursorController extends BaseController {
     update() {
         this.model.update();
 
-        const modelTransform = this.model.getComponent(COMPONENTS_ID.TransformModel);
-        const viewTransform = this.view.getComponent(COMPONENTS_ID.TransformModel);
+        const modelTransform = this.model.getComponent(COMPONENTS_ID.Transform);
+        const viewTransform = this.view.getComponent(COMPONENTS_ID.Transform);
 
         if (modelTransform && viewTransform) {
             viewTransform.x = modelTransform.x;

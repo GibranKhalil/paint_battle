@@ -1,4 +1,4 @@
-import ButtonComponent from "../components/Button.component.js";
+import ButtonComponent from "../entities/Button.entity.js";
 
 export default class ButtonFactory {
 

@@ -29,9 +29,9 @@ export default class MainMenuScreen extends BaseScreen {
         this.renderBackground();
         this.buttons
             .forEach((button) => button
-                .getComponent(COMPONENTS_ID.RendererUI)
+                .getComponent(COMPONENTS_ID.Renderer)
                 .render(
-                    button.getComponent(COMPONENTS_ID.TransformModel)
+                    button.getComponent(COMPONENTS_ID.Transform)
                 ))
         this.cursor.update();
     }

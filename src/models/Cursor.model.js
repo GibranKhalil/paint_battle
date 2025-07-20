@@ -1,9 +1,9 @@
 import COMPONENTS_ID from "../constants/componentsId.constant.js";
 import EVENTS from "../constants/event.constant.js";
+import MovementComponent from "../views/components/Movement.component.js";
+import TransformComponent from "../views/components/Transform.component.js";
 import BaseModel from "./Base.model.js";
-import MovementModel from "./Movement.model.js";
 import ObserverModel from "./Observer.model.js";
-import TransformModel from "./Transform.model.js";
 
 export default class CursorModel extends BaseModel {
     constructor(transform, movementConfig, positions) {
@@ -18,23 +18,23 @@ export default class CursorModel extends BaseModel {
     }
 
     _setupComponents(x, y, speed) {
-        this.addComponent(COMPONENTS_ID.TransformModel, new TransformModel(x, y))
-            .addComponent(COMPONENTS_ID.MovementModel, new MovementModel(speed))
+        this.addComponent(COMPONENTS_ID.Transform, new TransformComponent(x, y))
+            .addComponent(COMPONENTS_ID.Movement, new MovementComponent(speed))
             .addComponent(COMPONENTS_ID.ObserverModel, new ObserverModel())
     }
 
     click() {
         this.getComponent(COMPONENTS_ID.ObserverModel)
             .notifyObservers(EVENTS.ON_CLICK, {
-                x: this.getComponent(COMPONENTS_ID.TransformModel).x,
-                y: this.getComponent(COMPONENTS_ID.TransformModel).y
+                x: this.getComponent(COMPONENTS_ID.Transform).x,
+                y: this.getComponent(COMPONENTS_ID.Transform).y
             });
     }
 
     updateFreeMove() {
         const currentTime = Date.now();
-        const movement = this.getComponent(COMPONENTS_ID.MovementModel)
-        const transform = this.getComponent(COMPONENTS_ID.TransformModel)
+        const movement = this.getComponent(COMPONENTS_ID.Movement)
+        const transform = this.getComponent(COMPONENTS_ID.Transform)
         const observer = this.getComponent(COMPONENTS_ID.ObserverModel)
 
         if (currentTime - this.lastMoveTime >= this.moveInterval) {
@@ -76,7 +76,7 @@ export default class CursorModel extends BaseModel {
     }
 
     updateControlledMove() {
-        const transform = this.getComponent(COMPONENTS_ID.TransformModel);
+        const transform = this.getComponent(COMPONENTS_ID.Transform);
         const observer = this.getComponent(COMPONENTS_ID.ObserverModel);
 
         let moved = false;

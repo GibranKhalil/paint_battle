@@ -1,4 +1,4 @@
-export default class TransformModel {
+export default class TransformComponent {
     constructor(x = 0, y = 0, width, height) {
         this.x = x;
         this.y = y;

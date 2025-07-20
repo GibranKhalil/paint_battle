@@ -1,4 +1,4 @@
-export default class MovementModel {
+export default class MovementComponent {
     constructor(speed = 1) {
         this.speed = speed;
         this.stepSize = 1;
