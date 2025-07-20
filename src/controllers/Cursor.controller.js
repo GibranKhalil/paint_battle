@@ -1,33 +1,26 @@
 import COMPONENTS_ID from "../constants/componentsId.constant.js";
-import EVENTS from "../constants/event.constant.js";
 import CursorModel from "../models/Cursor.model.js";
 import CursorComponent from "../views/components/Cursor.component.js";
 import BaseController from "./Base.controller.js";
 
 export default class CursorController extends BaseController {
-    constructor(initialX = 0, initialY = 0, speed = 3, positions, observers) {
+    constructor(initialX = 0, initialY = 0, speed = 3, positions, clickables) {
         const model = new CursorModel({ x: initialX, y: initialY }, { speed }, positions);
         const view = new CursorComponent(initialX, initialY);
 
         super(model, view)
 
-        this._setupObserver(observers);
+        this._setupObserver(clickables);
     }
 
-    _setupObserver() {
-        this.model.getComponent(COMPONENTS_ID.ObserverModel)
-            .addObserver(this.view);
+    _setupObserver(clickables) {
+        const observerModel = this.model.getComponent(COMPONENTS_ID.ObserverModel)
+        observerModel.addObserver(this.view)
 
-        if (!this.view.onEntityEvent) {
-            this.view.onEntityEvent = (eventType, data) => {
-                if (eventType === EVENTS.POSITION_CHANGED) {
-                    const transform = this.view.getComponent(COMPONENTS_ID.TransformModel);
-                    if (transform) {
-                        transform.x = data.x;
-                        transform.y = data.y;
-                    }
-                }
-            };
+        if (clickables || clickables.length > 0) {
+            clickables.forEach(button => {
+                observerModel.addObserver(button)
+            });
         }
 
     }
