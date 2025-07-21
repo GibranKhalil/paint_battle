@@ -1,6 +1,5 @@
 import ASSETS_PATH from "../../constants/assetsPath.constant.js";
-import COMPONENTS_ID from "../../constants/componentsId.constant.js";
-import BackgroundFactory from "../ui/background.js";
+import AnimatorSystem from "../../systems/Animator.system.js";
 
 const BACKGROUNDS = [
     `${ASSETS_PATH.Backgrounds}/BLUE_BG.png`,
@@ -14,7 +13,7 @@ const BACKGROUNDS = [
 
 export default class BaseScreen {
     constructor() {
-        this.background = BackgroundFactory.createScreenBackground(0, 0, Screen.getMode().width, Screen.getMode().height, this._randomBackground());
+        this.background = new Image(this._randomBackground());
         this.parallaxState = {
             backgroundsY: [0, Screen.getMode().height],
             speed: 25 / 10000,
@@ -30,10 +29,6 @@ export default class BaseScreen {
     }
 
     renderBackground() {
-        this.background.getComponent(COMPONENTS_ID.Animator)
-            .parallaxToDown(
-                this.background.getComponent(COMPONENTS_ID.Renderer).sprite,
-                this.parallaxState
-            );
+        AnimatorSystem.parallaxToDown(this.background, this.parallaxState)
     }
 }
