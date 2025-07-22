@@ -5,7 +5,7 @@ const CHARACTERS_CONFIG = {
         Faceset: `${ASSETS_PATH.Characters}/NinjaGreen/Faceset.png`,
         SpriteSheet: `${ASSETS_PATH.Characters}/NinjaGreen/SpriteSheet.png`,
         Color: Color.new(86, 134, 76),
-        Name: "GREEN  NINJA"
+        Name: `GREEN.NINJA`
     },
     PIG: {
         Faceset: `${ASSETS_PATH.Characters}/Pig/Faceset.png`,
@@ -25,7 +25,12 @@ const CHARACTERS_CONFIG = {
         SpriteSheet: `${ASSETS_PATH.Characters}/Spirit/SpriteSheet.png`,
         Color: Color.new(121, 184, 206),
         Name: "SPIRIT"
-
+    },
+    NINJA_RED: {
+        Faceset: `${ASSETS_PATH.Characters}/NinjaRed2/Faceset.png`,
+        SpriteSheet: `${ASSETS_PATH.Characters}/NinjaRed2/SpriteSheet.png`,
+        Color: Color.new(224, 57, 76),
+        Name: `RED.NINJA`
     },
 }
 
