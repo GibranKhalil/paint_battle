@@ -1,12 +1,16 @@
 export default class AnimatorSystem {
     constructor() { }
 
-    static parallaxToDown(image, parallaxOptions, deltaTime) {
+    static parallaxToDown(image, parallaxOptions, speed) {
         if (parallaxOptions.backgroundsY[1] === 0) {
             parallaxOptions.backgroundsY[1] = parallaxOptions.screenHeight;
         }
 
-        const speed = 2;
+        if (parallaxOptions.lastUpdate === undefined) parallaxOptions.lastUpdate = Date.now();
+
+        const now = Date.now();
+        const deltaTime = now - parallaxOptions.lastUpdate;
+        parallaxOptions.lastUpdate = now;
 
         for (let i = 0; i < 2; i++) {
             parallaxOptions.backgroundsY[i] += speed * (deltaTime / 1000);

@@ -28,6 +28,6 @@ export default class BaseScreen {
     }
 
     renderBackground() {
-        AnimatorSystem.parallaxToDown(this.background, this.parallaxState, 16)
+        AnimatorSystem.parallaxToDown(this.background, this.parallaxState, 24)
     }
 }
