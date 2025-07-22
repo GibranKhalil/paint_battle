@@ -2,7 +2,6 @@ import ASSETS_PATH from "../../constants/assetsPath.constant.js";
 import CHARACTERS_CONFIG from "../../constants/characters.constant.js";
 import COLORS from "../../constants/colors.constant.js";
 import FONT_SIZE from "../../constants/fontSize.constant.js";
-import SCREEN_CONFIG from "../../constants/screen.constant.js";
 import AnimatorSystem from "../../systems/Animator.system.js";
 import BaseScreen from "./Base.screen.js";
 
@@ -55,7 +54,7 @@ export default class PlayerSelectScreen extends BaseScreen {
 
     calculateFramePositions() {
         const totalWidth = (this.FRAME_WIDTH * this.MAX_PLAYERS) + (this.FRAME_SPACING * (this.MAX_PLAYERS - 1));
-        const startX = (SCREEN_CONFIG.width - totalWidth) / 2;
+        const startX = (Screen.getMode().width - totalWidth) / 2;
 
         this.framePositions = [];
         for (let i = 0; i < this.MAX_PLAYERS; i++) {
@@ -134,6 +133,12 @@ export default class PlayerSelectScreen extends BaseScreen {
         const player = this.players[playerIndex];
 
         if (!player.pad) return;
+
+        if (this.players.filter((p) => p.isActive).length === 0) {
+            if (this.players[0].pad.justPressed(Pads.CIRCLE)) {
+                this.goBack();
+            }
+        }
 
         player.pad.update();
 
@@ -325,5 +330,11 @@ export default class PlayerSelectScreen extends BaseScreen {
                 asset.pixels = null;
             }
         });
+    }
+
+    goBack() {
+        if (this.screenManager) {
+            this.screenManager.changeScreen('mainMenu', true);
+        }
     }
 }

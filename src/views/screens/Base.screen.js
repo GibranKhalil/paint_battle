@@ -18,6 +18,8 @@ export default class BaseScreen {
             backgroundsY: [0, Screen.getMode().height],
             screenHeight: Screen.getMode().height
         }
+
+        this.screenManager = null;
     }
 
 
@@ -29,5 +31,9 @@ export default class BaseScreen {
 
     renderBackground() {
         AnimatorSystem.parallaxToDown(this.background, this.parallaxState, 24)
+    }
+
+    setScreenManager(manager) {
+        this.screenManager = manager;
     }
 }

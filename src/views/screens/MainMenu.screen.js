@@ -8,7 +8,7 @@ export default class MainMenuScreen extends BaseScreen {
         super();
 
         this.buttons = [
-            ButtonFactory.createMainMenuButton(28, 319, 140, 100, 'play', () => console.log("play")),
+            ButtonFactory.createMainMenuButton(28, 319, 140, 100, 'play', () => this.onPlayClick()),
             ButtonFactory.createMainMenuButton(176, 319, 140, 100, 'store', () => console.log("store")),
             ButtonFactory.createMainMenuButton(324, 319, 140, 100, 'credits', () => console.log("credits")),
             ButtonFactory.createMainMenuButton(472, 319, 140, 100, 'config', () => console.log("config"))
@@ -23,6 +23,13 @@ export default class MainMenuScreen extends BaseScreen {
             ],
             this.buttons
         )
+    }
+
+    onPlayClick() {
+        console.log("Play button clicked");
+        if (this.screenManager) {
+            this.screenManager.changeScreen('playerSelect', true);
+        }
     }
 
     render() {
