@@ -14,7 +14,7 @@ export default class PlayerSelectScreen extends BaseScreen {
         this.FRAME_WIDTH = 144;
         this.FRAME_HEIGHT = 327;
         this.FRAME_SPACING = 12;
-        this.MAX_PLAYERS = 4;
+        this.MAX_PLAYERS = 2;
         this.MAX_CACHED_ASSETS = 4;
 
         this.staticAssets = this.loadStaticAssets();
@@ -213,7 +213,7 @@ export default class PlayerSelectScreen extends BaseScreen {
 
         this.staticAssets.font.color = COLORS.BLACK;
         this.staticAssets.font.scale = FONT_SIZE.XS;
-        this.staticAssets.font.print(position.x + 58, position.y + 11, character.Name);
+        this.staticAssets.font.print(position.x + (this.FRAME_WIDTH - this.staticAssets.font.getTextSize(character.Name).width) / 2, position.y + 11, character.Name);
 
         this.staticAssets.font.color = COLORS.WHITE;
         this.staticAssets.font.scale = FONT_SIZE.SM;
