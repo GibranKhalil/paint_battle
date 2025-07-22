@@ -1,20 +1,22 @@
 export default class AnimatorSystem {
     constructor() { }
 
-    static parallaxToDown(image, parallaxOptions) {
+    static parallaxToDown(image, parallaxOptions, deltaTime) {
         if (parallaxOptions.backgroundsY[1] === 0) {
             parallaxOptions.backgroundsY[1] = parallaxOptions.screenHeight;
         }
 
+        const speed = 2;
+
         for (let i = 0; i < 2; i++) {
-            parallaxOptions.backgroundsY[i] += parallaxOptions.speed;
+            parallaxOptions.backgroundsY[i] += speed * (deltaTime / 1000);
             if (parallaxOptions.backgroundsY[i] >= parallaxOptions.screenHeight) {
                 parallaxOptions.backgroundsY[i] -= 2 * parallaxOptions.screenHeight;
             }
         }
 
-        image.draw(0, parallaxOptions.backgroundsY[0])
-        image.draw(0, parallaxOptions.backgroundsY[1])
+        image.draw(0, parallaxOptions.backgroundsY[0]);
+        image.draw(0, parallaxOptions.backgroundsY[1]);
     }
 
     static animationHorizontalSprite(totalFrames, fps, frameWidth, frameHeight, loop, image, scale = 1) {

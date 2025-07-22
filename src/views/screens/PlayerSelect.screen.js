@@ -1,4 +1,5 @@
 import ASSETS_PATH from "../../constants/assetsPath.constant.js";
+import CHARACTERS_CONFIG from "../../constants/characters.constant.js";
 import COLORS from "../../constants/colors.constant.js";
 import FONT_SIZE from "../../constants/fontSize.constant.js";
 import AnimatorSystem from "../../systems/Animator.system.js";
@@ -30,10 +31,13 @@ export default class PlayerSelectScreen extends BaseScreen {
         this.playerThreeFaceset = new Image(`${ASSETS_PATH.Characters}/Pig/Faceset.png`)
         this.playerFourthFaceset = new Image(`${ASSETS_PATH.Characters}/Skeleton/Faceset.png`)
 
-        this.playerOneCharacter = new Image(`${ASSETS_PATH.Characters}/NinjaGreen/SeparateAnim/Walk.png`)
-        this.playerTwoCharacter = new Image(`${ASSETS_PATH.Characters}/Spirit/SeparateAnim/Walk.png`)
-        this.playerThreeCharacter = new Image(`${ASSETS_PATH.Characters}/Pig/SeparateAnim/Walk.png`)
-        this.playerFourthCharacter = new Image(`${ASSETS_PATH.Characters}/Skeleton/SeparateAnim/Walk.png`)
+        this.playerOneCharacter = new Image(`${ASSETS_PATH.Characters}/NinjaGreen/SpriteSheet.png`)
+        this.playerTwoCharacter = new Image(`${ASSETS_PATH.Characters}/Spirit/SpriteSheet.png`)
+        this.playerThreeCharacter = new Image(`${ASSETS_PATH.Characters}/Pig/SpriteSheet.png`)
+        this.playerFourthCharacter = new Image(`${ASSETS_PATH.Characters}/Skeleton/SpriteSheet.png`)
+
+        this.arrow = new Image(`${ASSETS_PATH.Components}/arrow.png`)
+        this.arrow.height = 32;
     }
 
     render() {
@@ -41,16 +45,16 @@ export default class PlayerSelectScreen extends BaseScreen {
 
         this.headerFrame.draw(22, 10)
 
-        Draw.rect(20, 93, 132, 305, COLORS.WHITE);
+        Draw.rect(20, 93, 132, 305, CHARACTERS_CONFIG.NINJA_GREEN.Color);
         this.pattern.draw(20, 93)
 
-        Draw.rect(177, 93, 132, 305, COLORS.WHITE);
+        Draw.rect(177, 93, 132, 305, CHARACTERS_CONFIG.SPIRIT.Color);
         this.pattern.draw(177, 93)
 
-        Draw.rect(331, 93, 132, 305, COLORS.WHITE);
+        Draw.rect(331, 93, 132, 305, CHARACTERS_CONFIG.PIG.Color);
         this.pattern.draw(331, 93)
 
-        Draw.rect(486, 93, 132, 305, COLORS.WHITE);
+        Draw.rect(486, 93, 132, 305, CHARACTERS_CONFIG.SKELETON.Color);
         this.pattern.draw(486, 93)
 
         this.playerSelectFrame.draw(14, 76)
@@ -58,17 +62,54 @@ export default class PlayerSelectScreen extends BaseScreen {
         this.playerSelectFrame.draw(325, 76)
         this.playerSelectFrame.draw(480, 76)
 
-        AnimatorSystem.animationByColumns(4, 4, 4, 16, 16, true, this.playerOneCharacter, 2)
+        this.arrow.width = -Math.abs(32);
+        this.arrow.draw(36, 208)
+
+        this.arrow.width = Math.abs(32);
+        this.arrow.draw(136, 208)
+
+        this.arrow.width = -Math.abs(32);
+        this.arrow.draw(192, 208)
+
+        this.arrow.width = Math.abs(32);
+        this.arrow.draw(296, 208)
+
+        this.arrow.width = -Math.abs(32);
+        this.arrow.draw(348, 208)
+
+        this.arrow.width = Math.abs(32);
+        this.arrow.draw(452, 208)
+
+        this.arrow.width = -Math.abs(32);
+        this.arrow.draw(504, 208)
+
+        this.arrow.width = Math.abs(32);
+        this.arrow.draw(608, 208)
+
+
+        AnimatorSystem.animationByColumns(4, 1, 4, 16, 16, true, this.playerOneCharacter, 2)
         this.playerOneCharacter.draw(70, 208)
 
-        AnimatorSystem.animationByColumns(4, 4, 4, 16, 16, true, this.playerTwoCharacter, 2)
+        AnimatorSystem.animationByColumns(4, 1, 4, 16, 16, true, this.playerTwoCharacter, 2)
         this.playerTwoCharacter.draw(226, 208)
 
-        AnimatorSystem.animationByColumns(4, 4, 4, 16, 16, true, this.playerThreeCharacter, 2)
+        AnimatorSystem.animationByColumns(4, 1, 4, 16, 16, true, this.playerThreeCharacter, 2)
         this.playerThreeCharacter.draw(382, 208)
 
-        AnimatorSystem.animationByColumns(4, 4, 4, 16, 16, true, this.playerFourthCharacter, 2)
+        AnimatorSystem.animationByColumns(4, 1, 4, 16, 16, true, this.playerFourthCharacter, 2)
         this.playerFourthCharacter.draw(538, 208)
+
+        AnimatorSystem.animationByRows(1, 7, 4, 64, 16, true, this.playerOneCharacter)
+        this.playerOneCharacter.draw(75, 369)
+
+        AnimatorSystem.animationByRows(1, 7, 4, 64, 16, true, this.playerTwoCharacter)
+        this.playerTwoCharacter.draw(227, 369)
+
+        AnimatorSystem.animationByRows(1, 7, 4, 64, 16, true, this.playerThreeCharacter)
+        this.playerThreeCharacter.draw(383, 369)
+
+        AnimatorSystem.animationByRows(1, 7, 4, 64, 16, true, this.playerFourthCharacter)
+        this.playerFourthCharacter.draw(539, 369)
 
         this.faceset.draw(20, 358)
         this.playerTwoFaceset.draw(177, 358)

@@ -16,7 +16,6 @@ export default class BaseScreen {
         this.background = new Image(this._randomBackground());
         this.parallaxState = {
             backgroundsY: [0, Screen.getMode().height],
-            speed: 25 / 10000,
             screenHeight: Screen.getMode().height
         }
     }
@@ -29,6 +28,6 @@ export default class BaseScreen {
     }
 
     renderBackground() {
-        AnimatorSystem.parallaxToDown(this.background, this.parallaxState)
+        AnimatorSystem.parallaxToDown(this.background, this.parallaxState, 16)
     }
 }
