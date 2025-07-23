@@ -26,6 +26,5 @@ screenManager.setTransitionSpeed(0.0083);
 screenManager.changeScreen(SCREEN_ID.MAIN_MENU, false);
 
 Screen.display(() => {
-    screenManager.update();
-    screenManager.render();
+    storeScreen.render();
 });

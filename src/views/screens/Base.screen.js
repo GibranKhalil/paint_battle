@@ -36,4 +36,10 @@ export default class BaseScreen {
     setScreenManager(manager) {
         this.screenManager = manager;
     }
+
+    onEnter() {
+
+    }
+
+    onExit() { }
 }
