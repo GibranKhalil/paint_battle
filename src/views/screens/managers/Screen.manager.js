@@ -134,10 +134,6 @@ export default class ScreenManager {
         this.transitionManager.setTransitionSpeed(speed);
     }
 
-    setTransitionQuality(columnWidth) {
-        this.transitionManager.setColumnWidth(columnWidth);
-    }
-
     getRegisteredScreens() {
         return Array.from(this.screens.keys());
     }

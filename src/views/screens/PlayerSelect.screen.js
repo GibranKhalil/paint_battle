@@ -2,6 +2,7 @@ import ASSETS_PATH from "../../constants/assetsPath.constant.js";
 import CHARACTERS_CONFIG from "../../constants/characters.constant.js";
 import COLORS from "../../constants/colors.constant.js";
 import FONT_SIZE from "../../constants/fontSize.constant.js";
+import SCREEN_ID from "../../constants/screens.constant.js";
 import AnimatorSystem from "../../systems/Animator.system.js";
 import BaseScreen from "./Base.screen.js";
 
@@ -334,7 +335,7 @@ export default class PlayerSelectScreen extends BaseScreen {
 
     goBack() {
         if (this.screenManager) {
-            this.screenManager.changeScreen('mainMenu', true);
+            this.screenManager.changeScreen(SCREEN_ID.MAIN_MENU, true);
         }
     }
 }

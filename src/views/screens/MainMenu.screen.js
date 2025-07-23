@@ -1,4 +1,5 @@
 import COMPONENTS_ID from "../../constants/componentsId.constant.js";
+import SCREEN_ID from "../../constants/screens.constant.js";
 import CursorController from "../../controllers/Cursor.controller.js";
 import ButtonFactory from "../ui/button.js";
 import BaseScreen from "./Base.screen.js";
@@ -9,7 +10,7 @@ export default class MainMenuScreen extends BaseScreen {
 
         this.buttons = [
             ButtonFactory.createMainMenuButton(28, 319, 140, 100, 'play', () => this.onPlayClick()),
-            ButtonFactory.createMainMenuButton(176, 319, 140, 100, 'store', () => console.log("store")),
+            ButtonFactory.createMainMenuButton(176, 319, 140, 100, 'store', () => this.onStoreClick()),
             ButtonFactory.createMainMenuButton(324, 319, 140, 100, 'credits', () => console.log("credits")),
             ButtonFactory.createMainMenuButton(472, 319, 140, 100, 'config', () => console.log("config"))
         ]
@@ -26,9 +27,14 @@ export default class MainMenuScreen extends BaseScreen {
     }
 
     onPlayClick() {
-        console.log("Play button clicked");
         if (this.screenManager) {
-            this.screenManager.changeScreen('playerSelect', true);
+            this.screenManager.changeScreen(SCREEN_ID.PLAYER_SELECT, true);
+        }
+    }
+
+    onStoreClick() {
+        if (this.screenManager) {
+            this.screenManager.changeScreen(SCREEN_ID.STORE, true);
         }
     }
 
