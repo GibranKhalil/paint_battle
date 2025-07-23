@@ -12,6 +12,12 @@ export default class StoreScreen extends BaseScreen {
 
         this.pad = Pads.get(0);
         this.staticAssets = this._loadStaticAssets();
+        this.cardsPositions = []
+
+        this.CARDS_IN_ROW = 5;
+        this.CARDS_ROWS = this.staticAssets.characters.length / this.CARDS_IN_ROW;
+
+        this._calculateCardsPosition(30, 105, this.staticAssets.storeCard, 14);
     }
 
     _loadStaticAssets() {
@@ -25,7 +31,20 @@ export default class StoreScreen extends BaseScreen {
             footer: new Image(`${ASSETS_PATH.Components}/player-select-footer.png`),
             slidder: new Image(`${ASSETS_PATH.Components}/slidder.png`),
             scrollBG: new Image(`${ASSETS_PATH.Components}/SCROLL_BG.png`),
+            storeCard: new Image(`${ASSETS_PATH.Components}/STORE_CARD.png`)
         };
+    }
+
+    _calculateCardsPosition(initialX, y, image, gap) {
+        let cardsAdded = 0;
+        const totalCards = this.staticAssets.characters.length;
+
+        for (let index = 0; index < Math.ceil(totalCards / this.CARDS_IN_ROW); index++) {
+            for (let j = 0; j < this.CARDS_IN_ROW && cardsAdded < totalCards; j++) {
+                this.cardsPositions.push([initialX + (image.width + gap) * j, y + (image.height + 8) * index]);
+                cardsAdded++;
+            }
+        }
     }
 
     render() {
@@ -57,6 +76,10 @@ export default class StoreScreen extends BaseScreen {
         this.staticAssets.slidder.draw(593, 104)
 
         this.staticAssets.footer.draw(0, 418)
+
+        for (let index = 0; index < this.cardsPositions.length; index++) {
+            this.staticAssets.storeCard.draw(this.cardsPositions[index][0], this.cardsPositions[index][1])
+        }
 
         if (this.pad.justPressed(Pads.CIRCLE)) {
             this.goBack();
